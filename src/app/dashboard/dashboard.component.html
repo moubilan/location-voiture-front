@@ -1,0 +1,30 @@
+<div class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <div class="bg-white w-64 p-4 border-r">
+      <h2 class="text-xl font-bold mb-6">Dashboard</h2>
+      <ul>
+        <li class="mb-3">
+          <a routerLink="/dashboard/cars" class="block p-2 hover:bg-gray-200 rounded">Cars</a>
+        </li>
+        <li class="mb-3">
+          <a routerLink="/dashboard/reservations" class="block p-2 hover:bg-gray-200 rounded">Reservations</a>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col">
+      <!-- Navbar -->
+      <nav class="bg-white p-4 border-b">
+        <div class="flex justify-between items-center">
+          <h1 class="text-lg font-semibold">Welcome, Admin</h1>
+          <!-- <button class="p-2 hover:bg-gray-200 rounded">button</button> -->
+        </div>
+      </nav>
+  
+      <!-- Router Outlet -->
+      <div class="flex-1 p-6 overflow-y-auto">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>

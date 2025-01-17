@@ -1,0 +1,87 @@
+<div class="p-6">
+  <!-- Cards Section -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Card 1: Number of Cars -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-gray-500 text-sm font-semibold">Total Cars</h3>
+      <p class="text-2xl font-bold mt-2">
+        {{ dashboardMetrics?.totalCars || 'Loading...' }}
+      </p>
+    </div>
+
+    <!-- Card 2: Total Reservations -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-gray-500 text-sm font-semibold">Total Reservations</h3>
+      <p class="text-2xl font-bold mt-2">
+        {{ dashboardMetrics?.totalReservations || 'Loading...' }}
+      </p>
+    </div>
+
+    <!-- Card 3: Revenue -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-gray-500 text-sm font-semibold">Revenue</h3>
+      <p class="text-2xl font-bold mt-2">
+        {{ dashboardMetrics?.totalRevenue?.toFixed(2) || 'Loading...' }} DHs
+      </p>
+    </div>
+
+    <!-- Card 4: Reservations to Approve -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-gray-500 text-sm font-semibold">Reservations to Approve</h3>
+      <p class="text-2xl font-bold mt-2">
+        {{ dashboardMetrics?.reservationsToApprove || 'Loading...' }}
+      </p>
+    </div>
+  </div>
+
+  
+  <div class="bg-white rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold p-6 border-b">Latest Reservations</h2>
+    <table class="min-w-full border-collapse">
+      <thead>
+        <tr class="bg-gray-100 border-b">
+          <th class="text-left p-4 font-medium text-gray-700">Reservation ID</th>
+          <th class="text-left p-4 font-medium text-gray-700">Reservation Number</th>
+          <th class="text-left p-4 font-medium text-gray-700">Car Model</th>
+          <th class="text-left p-4 font-medium text-gray-700">Start Date</th>
+          <th class="text-left p-4 font-medium text-gray-700">Return Date</th>
+          <th class="text-left p-4 font-medium text-gray-700">Total Price</th>
+          <th class="text-left p-4 font-medium text-gray-700">Status</th>
+          <th class="text-left p-4 font-medium text-gray-700">Created At</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (reservation of dashboardMetrics?.latestReservations; track  dashboardMetrics?.latestReservations) {
+          <tr class="hover:bg-gray-50 border-b">
+            <td class="p-4 text-gray-600">#{{ reservation.reservationId }}</td>
+            <td class="p-4 text-gray-600">{{ reservation.reservationNumber }}</td>
+            <td class="p-4 text-gray-600">{{ reservation.carModel }}</td>
+            <td class="p-4 text-gray-600">{{ reservation.reservationDate | date: 'yyyy-MM-dd' }}</td>
+            <td class="p-4 text-gray-600">{{ reservation.returnDate | date: 'yyyy-MM-dd' }}</td>
+            <td class="p-4 text-gray-600">{{ reservation.totalPrice}} DH</td>
+            <td class="p-4">
+              <span
+                class="px-2 py-1 rounded-full text-sm"
+                [ngClass]="{
+                  'bg-green-100 text-green-800': reservation.status === 'APPROVED',
+                  'bg-yellow-100 text-yellow-800': reservation.status === 'PENDING',
+                  'bg-red-100 text-red-800': reservation.status === 'CANCELLED'
+                }"
+              >
+                {{ reservation.status }}
+              </span>
+            </td>
+            <td class="p-4 text-gray-600">
+              {{ reservation.createdAt ? (reservation.createdAt | date: 'yyyy-MM-dd') : 'N/A' }}
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="8" class="p-4 text-center text-gray-600">No reservations found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  </div>

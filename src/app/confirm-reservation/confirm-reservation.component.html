@@ -1,0 +1,93 @@
+<div class="bg-white-100 p-6">
+    <div class="max-w-4xl mx-auto bg-gray-200 rounded-lg shadow-md p-6">
+      <!-- Header Section -->
+      <h1 class="text-2xl font-bold text-gray-800 mb-4">Confirmation de réservation</h1>
+      
+      <div class="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+        <!-- Car Information -->
+        <div class="flex items-start space-x-4">
+          <img src="assets/img/{{carDetails.modele}}.png" alt="Car Image" class="bg-gray-800S w-64 h-64 object-cover rounded-md">
+          
+        </div>
+        
+        <!-- Reservation Details -->
+        <div class="flex-grow space-y-6 pl-4">
+            <div>
+                <h2 class="text-xl font-bold text-gray-900">{{ carDetails.marque }} {{ carDetails.modele }}</h2>
+                <p class="text-gray-500">{{carDetails.type}}</p>
+            </div>
+            <div>
+            <p class="text-gray-800 font-medium">{{reservationData.numberOfDays}} jours de location</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-gray-800">Lieu de retrait</h3>
+                <p class="text-gray-600">{{reservationData.lieuRetrait}}</p>
+                <p class="text-gray-500">{{reservationData.dateDepart}}</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-bold text-gray-800">Retour</h3>
+                <p class="text-gray-500">{{reservationData.dateRetour}}</p>
+            </div>
+        </div>
+      </div>
+  
+      <hr class="my-6">
+  
+      <!-- Overview Section -->
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-bold text-gray-900 mb-6">Aperçu de votre réservation</h3>
+        
+        <div class="space-y-4">
+          <!-- Assurance Section -->
+          <div class="flex items-center space-x-4">
+            <div class="flex-shrink-0">
+              <fa-icon [icon]="['fas', 'shield-halved']"></fa-icon>
+            </div>
+            <div>
+              <p class="text-gray-600 font-medium">Assurance</p>
+              <p class="text-gray-800 font-semibold">{{ reservationData.assurance || 'Non sélectionné' }}</p>
+            </div>
+          </div>
+      
+          <!-- Kilométrage Section -->
+          <div class="flex items-center space-x-4">
+            <div class="flex-shrink-0">
+              <fa-icon [icon]="['fas', 'road']"></fa-icon>
+            </div>
+            <div>
+              <p class="text-gray-600 font-medium">Kilométrage</p>
+              <p class="text-gray-800 font-semibold">{{ reservationData.kilometrage || 'Non sélectionné' }}</p>
+            </div>
+          </div>
+        </div>
+      
+        <hr class="my-6 border-gray-200">
+      </div>
+  
+      <!-- Confirm Button -->
+      <div class="text-right">
+        <button
+          (click)="confirmReservation()"
+          class="bg-orange-500 text-white mt-3 px-6 py-3 rounded-md text-lg font-medium hover:bg-orange-600 transition"
+        >
+          Confirmer la réservation
+        </button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Confirmation Modal -->
+     @if(isReservationConfirmed) {
+    <div  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">Merci !</h2>
+        <p class="text-gray-600 mb-6">Votre réservation a été confirmée avec succès.</p>
+        <button
+          (click)="closeModal()"
+          class="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition"
+        >
+          Fermer
+        </button>
+      </div>
+    </div>
+  }

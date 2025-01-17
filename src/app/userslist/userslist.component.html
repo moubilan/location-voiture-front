@@ -1,0 +1,66 @@
+<div class="max-w-7xl mx-auto mt-8 p-8 bg-gray-100 rounded-lg shadow-lg">
+    <!-- Page Header -->
+    <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Management Page</h2>
+
+    @if(errorMessage) {
+        <div role="alert" class="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{{errorMessage}}</span>
+        </div>
+    }
+
+    <div class="flex justify-end mb-6">
+        <button 
+            routerLink="/register" 
+            class="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+            Add User
+        </button>
+    </div>
+
+    <!-- User Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-200 text-left bg-white rounded-lg">
+            <thead class="bg-gray-200 text-gray-700">
+                <tr>
+                    <th class="px-6 py-3 border-b border-gray-300">ID</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Name</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Email</th>
+                    <th class="px-6 py-3 border-b border-gray-300">City</th>
+                    <th class="px-6 py-3 border-b border-gray-300">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(user of users; track user) {
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 border-b border-gray-300">{{ user.id }}</td>
+                        <td class="px-6 py-4 border-b border-gray-300">{{ user.name }}</td>
+                        <td class="px-6 py-4 border-b border-gray-300">{{ user.email }}</td>
+                        <td class="px-6 py-4 border-b border-gray-300">{{ user.city}}</td>
+                        <td>
+                            <button 
+                                class="px-4 py-2 text-sm bg-red-500 text-white rounded-lg shadow hover:bg-red-600 focus:ring-2 focus:ring-red-400 focus:outline-none mr-2"
+                                (click)="deleteUser(user.id)">
+                                Delete
+                            </button>
+                            <button 
+                                class="px-4 py-2 text-sm bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                                (click)="navigateToUpdate(user.id)">
+                                Update
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

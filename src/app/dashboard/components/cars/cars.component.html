@@ -1,0 +1,351 @@
+<div class="container mx-auto p-4">
+  <div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-bold">Car Dashboard</h1>
+    <button
+      (click)="openCreateModal()"
+      class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-200"
+    >
+      <fa-icon [icon]="['fas', 'plus']"></fa-icon> Add Car
+    </button>
+  </div>
+
+  
+    <table class="min-w-full bg-white border border-gray-300">
+      <thead>
+        <tr>
+          <th class="py-2 px-4 border-b">ID</th>
+          <th class="py-2 px-4 border-b">Brand</th>
+          <th class="py-2 px-4 border-b">Model</th>
+          <th class="py-2 px-4 border-b">Type</th>
+          <th class="py-2 px-4 border-b">Transmission</th>
+          <th class="py-2 px-4 border-b">Seats</th>
+          <th class="py-2 px-4 border-b">Doors</th>
+          <th class="py-2 px-4 border-b">Daily Price</th>
+          <th class="py-2 px-4 border-b">Rented</th>
+          <th class="py-2 px-4 border-b">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+
+    @for(car of cars; track car) {
+        <tr class="hover:bg-gray-100">
+          <td class="py-2 px-4 border-b">{{ car.id }}</td>
+          <td class="py-2 px-4 border-b">{{ car.marque }}</td>
+          <td class="py-2 px-4 border-b">{{ car.modele }}</td>
+          <td class="py-2 px-4 border-b">{{ car.type }}</td>
+          <td class="py-2 px-4 border-b">{{ car.transmission }}</td>
+          <td class="py-2 px-4 border-b">{{ car.nombreSiege }}</td>
+          <td class="py-2 px-4 border-b">{{ car.nombrePortes }}</td>
+          <td class="py-2 px-4 border-b">{{ car.prixJournalier }}</td>
+          <td class="py-2 px-4 border-b">{{ car.isRented ? 'Yes' : 'No' }}</td>
+          <td class="py-2 px-4 border-b">
+            <button
+            (click)="openEditModal(car.id)"
+            class="bg-blue-500 text-white px-2 py-1 rounded mr-2"
+          >
+            <fa-icon [icon]="['fas', 'pen-to-square']"></fa-icon>
+          </button>
+          <button (click)="deleteCar(car.id!)" class="bg-red-500 text-white px-2 py-1 rounded"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
+          </td>
+        </tr>
+    } @empty {
+      <tr>
+        <td colspan="9" class="p-4 text-center text-gray-600">No cars found.</td>
+      </tr>
+    }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Edit Modal -->
+  @if (isEditModalOpen && selectedCar) {
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+      <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl overflow-hidden">
+        <!-- Modal Header -->
+        <div class="bg-blue-500 p-2">
+          <h2 class="text-xl font-semibold text-white">Edit Car</h2>
+        </div>
+  
+        <!-- Modal Body (Scrollable) -->
+        <div class="p-6 max-h-[80vh] overflow-y-auto">
+          <form (ngSubmit)="updateCar()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- ID Field (Disabled and Grayish) -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium" for="id">ID</label>
+              <input
+                [(ngModel)]="selectedCar.id"
+                id="id"
+                name="id"
+                type="text"
+                class="w-full p-2 border border-gray-300 rounded-lg bg-gray-100 text-gray-600"
+                disabled
+              />
+            </div>
+  
+            <!-- Marque Field -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium " for="marque">Marque</label>
+              <input
+                [(ngModel)]="selectedCar.marque"
+                id="marque"
+                name="marque"
+                type="text"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <!-- Modele Field -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium " for="modele">Modele</label>
+              <input
+                [(ngModel)]="selectedCar.modele"
+                id="modele"
+                name="modele"
+                type="text"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <!-- Type Field -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium" for="type">Type</label>
+              <input
+                [(ngModel)]="selectedCar.type"
+                id="type"
+                name="type"
+                type="text"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <!-- Transmission Field -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium" for="transmission">Transmission</label>
+              <input
+                [(ngModel)]="selectedCar.transmission"
+                id="transmission"
+                name="transmission"
+                type="text"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <!-- NombreSiege Field -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium " for="nombreSiege">Number of Seats</label>
+              <input
+                [(ngModel)]="selectedCar.nombreSiege"
+                id="nombreSiege"
+                name="nombreSiege"
+                type="number"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <!-- NombrePortes Field -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium" for="nombrePortes">Number of Doors</label>
+              <input
+                [(ngModel)]="selectedCar.nombrePortes"
+                id="nombrePortes"
+                name="nombrePortes"
+                type="number"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <!-- PrixJournalier Field -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium " for="prixJournalier">Daily Price</label>
+              <input
+                [(ngModel)]="selectedCar.prixJournalier"
+                id="prixJournalier"
+                name="prixJournalier"
+                type="number"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+  
+            <!-- IsRented Field (Dropdown) -->
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-medium " for="isRented">Is Rented?</label>
+              <select
+                [(ngModel)]="selectedCar.isRented"
+                id="isRented"
+                name="isRented"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                required
+              >
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+            </div>
+  
+            <!-- Form Actions (Span Two Columns) -->
+            <div class="col-span-1 md:col-span-2 flex justify-end space-x-4">
+              <button
+                type="button"
+                (click)="closeEditModal()"
+                class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-200"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-200"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+}
+
+@if (isCreateModalOpen) {
+  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="bg-green-500 p-6">
+        <h2 class="text-xl font-semibold text-white">Add New Car</h2>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 max-h-[80vh] overflow-y-auto">
+        <form (ngSubmit)="createCar()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Marque Field -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="marque">Marque</label>
+            <input
+              [(ngModel)]="newCar.marque"
+              id="marque"
+              name="marque"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <!-- Modele Field -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="modele">Modele</label>
+            <input
+              [(ngModel)]="newCar.modele"
+              id="modele"
+              name="modele"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <!-- Type Field -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="type">Type</label>
+            <input
+              [(ngModel)]="newCar.type"
+              id="type"
+              name="type"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <!-- Transmission Field -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="transmission">Transmission</label>
+            <input
+              [(ngModel)]="newCar.transmission"
+              id="transmission"
+              name="transmission"
+              type="text"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <!-- NombreSiege Field -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="nombreSiege">Number of Seats</label>
+            <input
+              [(ngModel)]="newCar.nombreSiege"
+              id="nombreSiege"
+              name="nombreSiege"
+              type="number"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <!-- NombrePortes Field -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="nombrePortes">Number of Doors</label>
+            <input
+              [(ngModel)]="newCar.nombrePortes"
+              id="nombrePortes"
+              name="nombrePortes"
+              type="number"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <!-- PrixJournalier Field -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="prixJournalier">Daily Price</label>
+            <input
+              [(ngModel)]="newCar.prixJournalier"
+              id="prixJournalier"
+              name="prixJournalier"
+              type="number"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            />
+          </div>
+
+          <!-- IsRented Field (Dropdown) -->
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="isRented">Is Rented?</label>
+            <select
+              [(ngModel)]="newCar.isRented"
+              id="isRented"
+              name="isRented"
+              class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              required
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </div>
+
+          <!-- Form Actions (Span Two Columns) -->
+          <div class="col-span-1 md:col-span-2 flex justify-end space-x-4">
+            <button
+              type="button"
+              (click)="closeCreateModal()"
+              class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-200"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition duration-200"
+            >
+              Add Car
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+}
+  

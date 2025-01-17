@@ -4,10 +4,18 @@ import { FaConfig, FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular
 import { fontAwesomeIcons } from './shared/font-awesome-icons';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './register/register.component';
+import { UpdateuserComponent } from './updateuser/updateuser.component';
+import { UserslistComponent } from './userslist/userslist.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FontAwesomeModule, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, FontAwesomeModule, 
+    NavbarComponent, FooterComponent, LoginComponent, RegisterComponent, 
+    ProfileComponent, UpdateuserComponent, UserslistComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

@@ -8,23 +8,27 @@
     </div>
     <div class="navbar-center flex">
         <div class="menu menu-sm sm:menu-lg menu-horizontal px-1">
-            <li><a href="/">Home</a></li>
-            <li>
-                <details #productsMenu>
-                    <summary>Products</summary>
-                    <ul class="z-30">
-                        <li><a href="/products">All</a></li>
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details #AdminMenu>
-                    <summary>Admin</summary>
-                    <ul class="z-30">
-                        <li><a href="/products">All</a></li>
-                    </ul>
-                </details>
-            </li>
+            <li><a routerLink="/">Home</a></li>
+            
+            @if(isAdmin) {
+                <li>
+                    <details #AdminMenu>
+                        <summary>Dashboard</summary>
+                        <ul class="z-30">
+                            <li><a href="/dashboard/home">All</a></li>
+                        </ul>
+                    </details>
+                </li>
+            } @else if (isUser) {
+                <li>
+                    <details #productsMenu>
+                        <summary>My Reservations</summary>
+                        <ul class="z-30">
+                            <li><a href="/client-reservation">All</a></li>
+                        </ul>
+                    </details>
+                </li>
+            }
         </div>
     </div>
     <div class="navbar-end pe-4 flex align-items-center">
@@ -33,7 +37,13 @@
                 <fa-icon [icon]= "['fas', 'user']" class="menu-icon"></fa-icon>
             </div>
             <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow">
-                <li class="link">Login</li>
+                @if(isAuthenticated){
+                    <li class="link" >
+                        <a routerLink = "" (click)="logout()">Log Out</a>
+                    </li>
+                } @else {
+                    <li class="link">Login</li>
+                }
             </ul>
         </div>
         <div class="dropdown dropdown-end me-2" routerLink="/cart">

@@ -1,0 +1,208 @@
+<!-- <div class="container mx-auto flex flex-wrap">
+    <div class="w-full md:w-1/2 p-4">
+      <div class="lg:max-w-lg max-w-md relative rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
+        <div class="relative bg-gradient-to-tr from-gray-900 to-slate-300 bg-opacity-90 text-white p-4 rounded-b-lg">
+          <h2 class="text-lg font-bold text-white">Car Information</h2>
+          <p class="text-sm text-white">Marque Model Type</p>
+          <div class="flex justify-center">
+            <img src="assets/img/kiapicanto5d.png" alt="Car Image" class="w-full object-contain bg-grad">
+          </div>
+          <div class="flex space-x-4 mt-3">
+            <div class="flex items-center space-x-1">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800">
+                <i class="fas fa-user text-white"></i>
+              </div>
+              <span class="text-sm text-white">5 Seats</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800">
+                <i class="fas fa-door-closed text-white"></i>
+              </div>
+              <span class="text-sm text-white">4 Doors</span>
+            </div>
+            <div class="flex items-center space-x-1">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800">
+                <i class="fas fa-cogs text-white"></i>
+              </div>
+              <span class="text-sm text-white">Automatic</span>
+            </div>
+          </div>
+          <p class="mt-4 flex items-center text-white text-sm">
+            <i class="fas fa-check-circle mr-2"></i> Unlimited Mileage
+          </p>
+          <div class="mt-4 flex">
+            <p class="text-lg font-bold text-white">100 DH <span class="text-sm font-normal">/day</span></p>
+            <p class="pl-3 pt-[0.15rem] text-sm text-gray-400">Total: 300 DH</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 p-4">
+      <div class="bg-white rounded-lg shadow-md p-4">
+        <h3 class="text-lg font-bold mb-4">Insurance Options</h3>
+        <div class="flex flex-col space-y-4">
+          <div class="flex items-center justify-between">
+            <p class="text-sm">Basic Insurance</p>
+            <select class="rounded-md border border-gray-300 py-1 px-2 focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="basic">Basic Coverage</option>
+              <option value="extended">Extended Coverage (+$20/day)</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <p class="text-sm">Roadside Assistance</p>
+            <select class="rounded-md"></select>
+        </div>
+    </div>
+</div> -->
+
+<div class="grid grid-cols-2 gap-8">
+  <div class="bg-white rounded-lg shadow-md p-4">
+    <!-- Car Details -->
+    <div class="max-w-3xl relative bg-gradient-to-tr from-gray-900 to-slate-300 bg-opacity-90 text-white p-4 rounded-b-lg">
+      <h2 class="text-lg font-bold text-white">{{ carDetails.marque }} {{ carDetails.modele }}</h2>
+      <p class="text-sm text-white">{{carDetails.type}}</p>
+      <div class="flex justify-center">
+        <img
+          src="assets/img/{{carDetails.modele}}.png"
+          alt="Car Image"
+          class="w-full object-contain bg-grad"
+        />
+      </div>
+      <div class="flex space-x-4 mt-3">
+        <div class="flex items-center space-x-1">
+          <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800">
+            <svg fill="#1C274C" viewBox="-2.56 -2.56 37.12 37.12" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0" 
+              transform="translate(2.5600000000000005,2.5600000000000005), scale(0.84)"><rect x="-2.56" y="-2.56" width="37.12" height="37.12" rx="18.56" fill="#ffffff" 
+              strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.064"></g><g id="SVGRepo_iconCarrier">
+                <path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 
+              5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"></path></g></svg>
+          </div>
+          <span class="text-sm text-white">{{ carDetails.nombreSiege }}</span>
+        </div>
+        <div class="flex items-center space-x-1">
+          <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800">
+            <svg fill="#000000" viewBox="-2.4 -2.4 28.80 28.80" id="car-door-left-4" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" 
+            class="icon flat-color"><g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(1.1999999999999993,1.1999999999999993), scale(0.9)">
+              <rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="14.4" fill="#ffffff" strokewidth="0"></rect></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" 
+              stroke-width="0.048"></g><g id="SVGRepo_iconCarrier"><path id="primary" d="M3,4V20a2,2,0,0,0,2,2h7a1,1,0,0,0,1-.76,5.11,5.11,0,0,1,4.25-3.83l2.06-.3a2,2,0,0,0,1.72-2V11a1,1,0,0,0-.29-.71L13,2.59A2,2,0,0,0,11.59,2H5A2,2,0,0,0,3,4ZM5,4h6.59l6,6H5Z" 
+              style="fill: #1C274C;"></path><path id="secondary" d="M6,14H9a1,1,0,0,0,0-2H6a1,1,0,0,0,0,2Z" style="fill: #2ca9bc;"></path></g></svg>
+          </div>
+          <span class="text-sm text-white">{{ carDetails.nombrePortes }}</span>
+        </div>
+        <div class="flex items-center space-x-1">
+          <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800">
+            <svg viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" 
+              stroke-width="0"><rect x="-2.4" y="-2.4" width="28.80" height="28.80" rx="14.4" fill="#fcfcfc" strokewidth="0"></rect></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> 
+                <path d="M2 4C2 2.89543 2.89543 2 4 2C5.10457 2 6 2.89543 6 4C6 4.83934 5.48296 5.55793 4.75 5.85462V11.25H11.25V5.85462C10.517 5.55793 10 4.83934 
+                10 4C10 2.89543 10.8954 2 12 2C13.1046 2 14 2.89543 14 4C14 4.83934 13.483 5.55793 12.75 5.85462V11.25H16C16.964 11.25 17.6116 11.2484 18.0946 11.1835C18.5561 
+                11.1214 18.7536 11.0142 18.8839 10.8839C19.0142 10.7536 19.1214 10.5561 19.1835 10.0946C19.2484 9.61157 19.25 8.96401 19.25 8V5.85462C18.517 5.55793 18 4.83934 18 4C18 2.89543 
+                18.8954 2 20 2C21.1046 2 22 2.89543 22 4C22 4.83934 21.483 5.55793 20.75 5.85462V8.05199C20.75 8.95048 20.7501 9.6997 20.6701 10.2945C20.5857 10.9223 20.4 11.4891 19.9445 11.9445C19.4891 12.4 
+                18.9223 12.5857 18.2945 12.6701C17.6997 12.7501 16.9505 12.75 16.052 12.75L12.75 12.75L12.75 18.1454C13.483 18.4421 14 19.1607 14 20C14 21.1046 13.1046 22 12 22C10.8954 22 10 21.1046 10 20C10 
+                19.1607 10.517 18.4421 11.25 18.1454V12.75H4.75V18.1454C5.48296 18.4421 6 19.1607 6 20C6 21.1046 5.10457 22 4 22C2.89543 22 2 21.1046 2 20C2 19.1607 2.51704 18.4421 3.25 18.1454V5.85462C2.51704 5.55793 2 4.83934 2 4Z" 
+                fill="#1C274C"></path> <path fill-rule="evenodd" clip-rule="evenodd" d="M17.25 15C17.25 14.5858 17.5858 14.25 18 14.25H20.2857C21.6612 14.25 22.75 15.3839 22.75 16.75C22.75 17.8285 22.0713 18.7624 21.1086 19.1077L22.6396 21.6084C22.8559 
+                21.9616 22.7449 22.4234 22.3916 22.6396C22.0384 22.8559 21.5766 22.7449 21.3604 22.3916L19.4369 19.25H18.75V22C18.75 22.4142 18.4142 22.75 18 22.75C17.5858 22.75 17.25 22.4142 17.25 22V15ZM18.75 17.75H20.2857C20.8038 17.75 21.25 17.3169
+                21.25 16.75C21.25 16.1831 20.8038 15.75 20.2857 15.75H18.75V17.75Z" fill="#1C274C"></path> </g></svg>
+          </div>
+          <span class="text-sm text-white">{{ carDetails.transmission }}</span>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-1">
+        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-gray-800">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 text-green-500"
+            viewBox="-192 -192 2304.00 2304.00"
+            fill="currentColor"
+          >
+            <path
+              d="M1743.858 267.012 710.747 1300.124 176.005 765.382 0 941.387l710.747 710.871 1209.24-1209.116z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+        <p class="text-sm text-white">Kilométrage illimité disponible</p>
+      </div>
+      
+      <div class="mt-4 flex">
+        <p class="text-lg font-bold text-white">{{carDetails.prixJournalier}} DHs <span class="text-sm font-normal">/jour</span></p>
+        <p class="pl-3 pt-[0.15rem] text-sm text-gray-400">{{calculateTotalPrice()}} DHs total</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-md p-6 flex flex-col space-y-6 w-full max-w-md">
+    <!-- Protection Options -->
+    <div>
+      <h2 class="text-lg font-bold text-gray-900">Protection vol et collision</h2>
+      <div class="mt-4 space-y-4">
+        <label class="flex items-center justify-between border p-3 rounded-lg hover:shadow transition">
+          <div class="flex items-center space-x-3">
+            <input type="radio" name="assurance" class="form-radio text-orange-500" (change)="updateAssurance('Protection vol-collision avec franchise réduite')" />
+            <div>
+              <p class="text-gray-800 font-medium">Protection vol-collision avec franchise réduite</p>
+              <p class="text-sm text-gray-500">{{carDetails.prixJournalier * 18}} DHs de franchise</p>
+            </div>
+          </div>
+          <span class="text-gray-800 font-bold">{{ carDetails.prixJournalier * 0.24 }} DHs/ jour</span>
+        </label>
+        <label class="flex items-center justify-between border p-3 rounded-lg hover:shadow transition">
+          <div class="flex items-center space-x-3">
+            <input type="radio" name="assurance" class="form-radio text-orange-500" (change)="updateAssurance('Protection vol-collision avec franchise minimum')" />
+            <div>
+              <p class="text-gray-800 font-medium">Protection vol-collision avec franchise minimum</p>
+              <p class="text-sm text-gray-500">{{carDetails.prixJournalier * 6}} DHs de franchise</p>
+            </div>
+          </div>
+          <span class="text-gray-800 font-bold">{{ carDetails.prixJournalier * 0.44 }} DHs/ jour</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Mileage Options -->
+    <div>
+      <h2 class="text-lg font-bold text-gray-900">Kilométrage</h2>
+      <div class="mt-4 space-y-4">
+        <label class="flex items-center justify-between border p-3 rounded-lg hover:shadow transition">
+          <div class="flex items-center space-x-3">
+            <input type="radio" name="mileage" class="form-radio text-orange-500" (change)="updateKilometrage('1360 km')" />
+            <div>
+              <p class="text-gray-800 font-medium">1360 km</p>
+              <p class="text-sm text-gray-500">2 MAD pour chaque kilomètre supplémentaire</p>
+            </div>
+          </div>
+          <span class="text-gray-800 font-semibold">Inclus</span>
+        </label>
+        <label class="flex items-center justify-between border p-3 rounded-lg hover:shadow transition">
+          <div class="flex items-center space-x-3">
+            <input type="radio" name="mileage" class="form-radio text-orange-500" (change)="updateKilometrage('Kilomètres illimités')" />
+            <div>
+              <p class="text-gray-800 font-medium">Kilomètres illimités</p>
+              <p class="text-sm text-gray-500">Tous les kilomètres sont inclus dans le prix</p>
+            </div>
+          </div>
+          <span class="pl-2 text-gray-800 font-bold">80 DHs / jour</span>
+        </label>
+      </div>
+    </div>
+
+    @if (errorMessage) {
+      <div class="mt-4 text-red-500 text-sm">
+        {{ errorMessage }}
+      </div>
+    }
+
+    <!-- Price Section -->
+    <div class="mt-4">
+      <div class="flex items-center">
+        <p class="text-lg font-bold text-gray-800 mr-2">Totale: </p>
+        <p class="text-sm text-gray-500">{{calculateTotalPrice()}} DHs totale</p>
+      </div>
+      <button (click)="navigateToConfirmation()" class="block mt-4 bg-orange-500 text-white text-center py-2 px-8 rounded-lg font-medium hover:bg-orange-600 transition  ml-auto">
+        Suivant
+      </button>
+    </div>
+    
+  </div>
+</div>
