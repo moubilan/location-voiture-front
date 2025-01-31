@@ -3,14 +3,14 @@
     <table class="min-w-full border-collapse">
       <thead>
         <tr class="bg-gray-100 border-b">
-          <th class="text-left p-4 font-medium text-gray-700">Reservation ID</th>
-          <th class="text-left p-4 font-medium text-gray-700">Reservation Number</th>
-          <th class="text-left p-4 font-medium text-gray-700">Pickup Location</th>
-          <th class="text-left p-4 font-medium text-gray-700">Departure Date</th>
-          <th class="text-left p-4 font-medium text-gray-700">Return Date</th>
-          <th class="text-left p-4 font-medium text-gray-700">Insurance</th>
-          <th class="text-left p-4 font-medium text-gray-700">Status</th>
-          <!-- <th class="text-left p-4 font-medium text-gray-700">Approved</th> -->
+          <th class="text-left p-4 font-medium text-gray-700">ID de Réservation</th>
+          <!-- <th class="text-left p-4 font-medium text-gray-700">Numéro de Réservation</th> -->
+          <th class="text-left p-4 font-medium text-gray-700">Lieu de Retrait</th>
+          <th class="text-left p-4 font-medium text-gray-700">Date de Départ</th>
+          <th class="text-left p-4 font-medium text-gray-700">Date de Retour</th>
+          <th class="text-left p-4 font-medium text-gray-700">Assurance</th>
+          <th class="text-left p-4 font-medium text-gray-700">Statut</th>
+          <!-- <th class="text-left p-4 font-medium text-gray-700">Approuvé</th> -->
           <th class="text-left p-4 font-medium text-gray-700">Actions</th>
         </tr>
       </thead>
@@ -18,7 +18,7 @@
         @for (reservation of reservations; track reservation) {
           <tr class="hover:bg-gray-50 border-b">
             <td class="p-4 text-gray-600">#{{ reservation.id }}</td>
-            <td class="p-4 text-gray-600">{{ reservation.numeroReservation }}</td>
+            <!-- <td class="p-4 text-gray-600">{{ reservation.numeroReservation }}</td> -->
             <td class="p-4 text-gray-600">{{ reservation.lieuRetrait }}</td>
             <td class="p-4 text-gray-600">{{ reservation.dateDepart | date: 'yyyy-MM-dd' }}</td>
             <td class="p-4 text-gray-600">{{ reservation.dateRetour | date: 'yyyy-MM-dd' }}</td>

@@ -38,7 +38,7 @@ export class LoginComponent {
         localStorage.setItem('user', JSON.stringify(userData));
         localStorage.setItem('token', response.token)
         localStorage.setItem('role', response.role)
-        this.router.navigate(['/profile'])
+        this.router.navigate(['/home'])
       }else{
         this.showError(response.message)
       }

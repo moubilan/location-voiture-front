@@ -1,33 +1,34 @@
 <div class="container mx-auto p-4">
   <div class="flex justify-between items-center mb-6">
-    <h1 class="text-2xl font-bold">Car Dashboard</h1>
+    <h1 class="text-2xl font-bold">Voitures Dashboard</h1>
     <button
       (click)="openCreateModal()"
       class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-200"
     >
-      <fa-icon [icon]="['fas', 'plus']"></fa-icon> Add Car
+      <fa-icon [icon]="['fas', 'plus']"></fa-icon> Nouvelle voitrue
     </button>
   </div>
 
   
-    <table class="min-w-full bg-white border border-gray-300">
+    <table class="min-w-full bg-white border border-gray-300 overflow-hidden">
       <thead>
         <tr>
           <th class="py-2 px-4 border-b">ID</th>
-          <th class="py-2 px-4 border-b">Brand</th>
-          <th class="py-2 px-4 border-b">Model</th>
+          <th class="py-2 px-4 border-b">Marque</th>
+          <th class="py-2 px-4 border-b">Modele</th>
           <th class="py-2 px-4 border-b">Type</th>
           <th class="py-2 px-4 border-b">Transmission</th>
-          <th class="py-2 px-4 border-b">Seats</th>
-          <th class="py-2 px-4 border-b">Doors</th>
-          <th class="py-2 px-4 border-b">Daily Price</th>
-          <th class="py-2 px-4 border-b">Rented</th>
+          <th class="py-2 px-4 border-b">Sieges</th>
+          <th class="py-2 px-4 border-b">Portes</th>
+          <th class="py-2 px-4 border-b">Prix Journalier</th>
+          <!-- <th class="py-2 px-4 border-b">Loue</th> -->
           <th class="py-2 px-4 border-b">Actions</th>
+
         </tr>
       </thead>
       <tbody>
 
-    @for(car of cars; track car) {
+      @for(car of cars; track car) {
         <tr class="hover:bg-gray-100">
           <td class="py-2 px-4 border-b">{{ car.id }}</td>
           <td class="py-2 px-4 border-b">{{ car.marque }}</td>
@@ -37,7 +38,7 @@
           <td class="py-2 px-4 border-b">{{ car.nombreSiege }}</td>
           <td class="py-2 px-4 border-b">{{ car.nombrePortes }}</td>
           <td class="py-2 px-4 border-b">{{ car.prixJournalier }}</td>
-          <td class="py-2 px-4 border-b">{{ car.isRented ? 'Yes' : 'No' }}</td>
+          <!-- <td class="py-2 px-4 border-b">{{ car.isRented ? 'Yes' : 'No' }}</td> -->
           <td class="py-2 px-4 border-b">
             <button
             (click)="openEditModal(car.id)"
@@ -48,11 +49,11 @@
           <button (click)="deleteCar(car.id!)" class="bg-red-500 text-white px-2 py-1 rounded"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
           </td>
         </tr>
-    } @empty {
-      <tr>
-        <td colspan="9" class="p-4 text-center text-gray-600">No cars found.</td>
-      </tr>
-    }
+      } @empty {
+        <tr>
+          <td colspan="9" class="p-4 text-center text-gray-600">No cars found.</td>
+        </tr>
+      }
       </tbody>
     </table>
   </div>
@@ -63,7 +64,7 @@
       <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl overflow-hidden">
         <!-- Modal Header -->
         <div class="bg-blue-500 p-2">
-          <h2 class="text-xl font-semibold text-white">Edit Car</h2>
+          <h2 class="text-xl font-semibold text-white">Modifier la voiture</h2>
         </div>
   
         <!-- Modal Body (Scrollable) -->
@@ -136,7 +137,7 @@
   
             <!-- NombreSiege Field -->
             <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-medium " for="nombreSiege">Number of Seats</label>
+              <label class="block text-gray-700 text-sm font-medium " for="nombreSiege">Nombre de sieges</label>
               <input
                 [(ngModel)]="selectedCar.nombreSiege"
                 id="nombreSiege"
@@ -149,7 +150,7 @@
   
             <!-- NombrePortes Field -->
             <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-medium" for="nombrePortes">Number of Doors</label>
+              <label class="block text-gray-700 text-sm font-medium" for="nombrePortes">Nombre de portes</label>
               <input
                 [(ngModel)]="selectedCar.nombrePortes"
                 id="nombrePortes"
@@ -162,7 +163,7 @@
   
             <!-- PrixJournalier Field -->
             <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-medium " for="prixJournalier">Daily Price</label>
+              <label class="block text-gray-700 text-sm font-medium " for="prixJournalier">Prix Journalier</label>
               <input
                 [(ngModel)]="selectedCar.prixJournalier"
                 id="prixJournalier"
@@ -175,7 +176,7 @@
   
             <!-- IsRented Field (Dropdown) -->
             <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-medium " for="isRented">Is Rented?</label>
+              <label class="block text-gray-700 text-sm font-medium " for="isRented">est louee</label>
               <select
                 [(ngModel)]="selectedCar.isRented"
                 id="isRented"
@@ -195,13 +196,13 @@
                 (click)="closeEditModal()"
                 class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-200"
               >
-                Cancel
+                Annuler
               </button>
               <button
                 type="submit"
                 class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition duration-200"
               >
-                Save Changes
+                Enregistrer
               </button>
             </div>
           </form>
@@ -215,7 +216,7 @@
     <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl overflow-hidden">
       <!-- Modal Header -->
       <div class="bg-green-500 p-6">
-        <h2 class="text-xl font-semibold text-white">Add New Car</h2>
+        <h2 class="text-xl font-semibold text-white">Ajouter une nouvelle voiture</h2>
       </div>
 
       <!-- Modal Body (Scrollable) -->
@@ -275,7 +276,7 @@
 
           <!-- NombreSiege Field -->
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-medium mb-2" for="nombreSiege">Number of Seats</label>
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="nombreSiege">Nombre de sieges</label>
             <input
               [(ngModel)]="newCar.nombreSiege"
               id="nombreSiege"
@@ -288,7 +289,7 @@
 
           <!-- NombrePortes Field -->
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-medium mb-2" for="nombrePortes">Number of Doors</label>
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="nombrePortes">Nombre de portes</label>
             <input
               [(ngModel)]="newCar.nombrePortes"
               id="nombrePortes"
@@ -301,7 +302,7 @@
 
           <!-- PrixJournalier Field -->
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-medium mb-2" for="prixJournalier">Daily Price</label>
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="prixJournalier">Prix Journalier</label>
             <input
               [(ngModel)]="newCar.prixJournalier"
               id="prixJournalier"
@@ -314,7 +315,7 @@
 
           <!-- IsRented Field (Dropdown) -->
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-medium mb-2" for="isRented">Is Rented?</label>
+            <label class="block text-gray-700 text-sm font-medium mb-2" for="isRented">est louee?</label>
             <select
               [(ngModel)]="newCar.isRented"
               id="isRented"
@@ -334,13 +335,13 @@
               (click)="closeCreateModal()"
               class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition duration-200"
             >
-              Cancel
+              Annuler
             </button>
             <button
               type="submit"
               class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition duration-200"
             >
-              Add Car
+              Ajouter voiture
             </button>
           </div>
         </form>

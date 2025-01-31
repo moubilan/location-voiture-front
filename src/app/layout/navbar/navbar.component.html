@@ -33,23 +33,29 @@
     </div>
     <div class="navbar-end pe-4 flex align-items-center">
         <div class="dropdown dropdown-end pe-4">
-            <div tabindex="0" role="button">
-                <fa-icon [icon]= "['fas', 'user']" class="menu-icon"></fa-icon>
+            <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                <fa-icon [icon]="['fas', 'user']" class="menu-icon text-xl"></fa-icon>
             </div>
-            <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow">
-                @if(isAuthenticated){
-                    <li class="link" >
-                        <a routerLink = "" (click)="logout()">Log Out</a>
+            <ul class="dropdown-content menu menu-lg bg-base-100 rounded-box z-10 w-52 p-2 shadow-lg">
+                @if(isAuthenticated) {
+                    <li>
+                        <a routerLink="" (click)="logout()" class="flex items-center p-2 hover:bg-gray-100 rounded-md">
+                            <span>Log Out</span>
+                        </a>
                     </li>
                 } @else {
-                    <li class="link">Login</li>
+                    <li>
+                        <a routerLink="/login" class="flex items-center p-2 hover:bg-gray-100 rounded-md">
+                            <span>Login</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/register" class="flex items-center p-2 hover:bg-gray-100 rounded-md">
+                            <span>Register</span>
+                        </a>
+                    </li>
                 }
             </ul>
         </div>
-        <div class="dropdown dropdown-end me-2" routerLink="/cart">
-            <div tabindex="0" role="button">
-                <fa-icon [icon]= "['fas', 'cart-shopping']" class="menu-icon"></fa-icon>
-            </div>
-        </div> 
     </div> 
 </div>

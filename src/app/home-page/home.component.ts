@@ -40,6 +40,6 @@ export class HomePageComponent {
   }
 
   navigateToReservation(): void {
-    this.router.navigate(['/reservation']);
+    this.router.navigate(['/reservation-form']);
   }
 }

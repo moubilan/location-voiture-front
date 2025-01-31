@@ -37,8 +37,8 @@ export class ConfirmReservationComponent implements OnInit{
     const { carId, ...reservation } = this.reservationData;
     const reservationPayload = {
       ...reservation,
-      numeroReservation: 124664, 
-      status: "Pending",
+      numeroReservation: 1244 + carId,
+      status: "PENDING",
       isApproved: false,
       voiture : {id : this.reservationData.carId},
       client : {id: this.usersService.getLoggedUserId()}

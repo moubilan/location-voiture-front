@@ -127,7 +127,7 @@
       
       <div class="mt-4 flex">
         <p class="text-lg font-bold text-white">{{carDetails.prixJournalier}} DHs <span class="text-sm font-normal">/jour</span></p>
-        <p class="pl-3 pt-[0.15rem] text-sm text-gray-400">{{calculateTotalPrice()}} DHs total</p>
+        <p class="pl-3 pt-[0.15rem] text-sm text-gray-400">{{(calculateTotalPrice()).toFixed(2)}} DHs total</p>
       </div>
     </div>
   </div>
@@ -142,20 +142,20 @@
             <input type="radio" name="assurance" class="form-radio text-orange-500" (change)="updateAssurance('Protection vol-collision avec franchise réduite')" />
             <div>
               <p class="text-gray-800 font-medium">Protection vol-collision avec franchise réduite</p>
-              <p class="text-sm text-gray-500">{{carDetails.prixJournalier * 18}} DHs de franchise</p>
+              <p class="text-sm text-gray-500">{{(carDetails.prixJournalier * 18).toFixed(2)}} DHs de franchise</p>
             </div>
           </div>
-          <span class="text-gray-800 font-bold">{{ carDetails.prixJournalier * 0.24 }} DHs/ jour</span>
+          <span class="text-gray-800 font-bold">{{ (carDetails.prixJournalier * 0.24).toFixed(2) }} DHs/ jour</span>
         </label>
         <label class="flex items-center justify-between border p-3 rounded-lg hover:shadow transition">
           <div class="flex items-center space-x-3">
             <input type="radio" name="assurance" class="form-radio text-orange-500" (change)="updateAssurance('Protection vol-collision avec franchise minimum')" />
             <div>
               <p class="text-gray-800 font-medium">Protection vol-collision avec franchise minimum</p>
-              <p class="text-sm text-gray-500">{{carDetails.prixJournalier * 6}} DHs de franchise</p>
+              <p class="text-sm text-gray-500">{{(carDetails.prixJournalier * 6).toFixed(2)}} DHs de franchise</p>
             </div>
           </div>
-          <span class="text-gray-800 font-bold">{{ carDetails.prixJournalier * 0.44 }} DHs/ jour</span>
+          <span class="text-gray-800 font-bold">{{ (carDetails.prixJournalier * 0.44).toFixed(2) }} DHs/ jour</span>
         </label>
       </div>
     </div>
@@ -197,9 +197,9 @@
     <div class="mt-4">
       <div class="flex items-center">
         <p class="text-lg font-bold text-gray-800 mr-2">Totale: </p>
-        <p class="text-sm text-gray-500">{{calculateTotalPrice()}} DHs totale</p>
+        <p class="text-sm text-gray-500">{{(calculateTotalPrice()).toFixed(2)}} DHs totale</p>
       </div>
-      <button (click)="navigateToConfirmation()" class="block mt-4 bg-orange-500 text-white text-center py-2 px-8 rounded-lg font-medium hover:bg-orange-600 transition  ml-auto">
+      <button (click)="navigateToConfirmation()" class="block mt-4 bg-[#FFB100] text-white text-center py-2 px-8 rounded-lg font-medium hover:bg-orange-600 transition  ml-auto">
         Suivant
       </button>
     </div>

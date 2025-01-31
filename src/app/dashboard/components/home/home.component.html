@@ -40,25 +40,25 @@
     <table class="min-w-full border-collapse">
       <thead>
         <tr class="bg-gray-100 border-b">
-          <th class="text-left p-4 font-medium text-gray-700">Reservation ID</th>
-          <th class="text-left p-4 font-medium text-gray-700">Reservation Number</th>
-          <th class="text-left p-4 font-medium text-gray-700">Car Model</th>
-          <th class="text-left p-4 font-medium text-gray-700">Start Date</th>
-          <th class="text-left p-4 font-medium text-gray-700">Return Date</th>
-          <th class="text-left p-4 font-medium text-gray-700">Total Price</th>
-          <th class="text-left p-4 font-medium text-gray-700">Status</th>
-          <th class="text-left p-4 font-medium text-gray-700">Created At</th>
+          <th class="text-left p-4 font-medium text-gray-700">ID de Réservation</th>
+          <!-- <th class="text-left p-4 font-medium text-gray-700">Numero de Reservation</th> -->
+          <th class="text-left p-4 font-medium text-gray-700">Modele de Voiture</th>
+          <th class="text-left p-4 font-medium text-gray-700">Date de Debut</th>
+          <th class="text-left p-4 font-medium text-gray-700">Date de Retour</th>
+          <th class="text-left p-4 font-medium text-gray-700">Prix Total</th>
+          <th class="text-left p-4 font-medium text-gray-700">Statut</th>
+          <th class="text-left p-4 font-medium text-gray-700">date Creation</th>
         </tr>
       </thead>
       <tbody>
         @for (reservation of dashboardMetrics?.latestReservations; track  dashboardMetrics?.latestReservations) {
           <tr class="hover:bg-gray-50 border-b">
             <td class="p-4 text-gray-600">#{{ reservation.reservationId }}</td>
-            <td class="p-4 text-gray-600">{{ reservation.reservationNumber }}</td>
+            <!-- <td class="p-4 text-gray-600">{{ reservation.reservationNumber }}</td> -->
             <td class="p-4 text-gray-600">{{ reservation.carModel }}</td>
             <td class="p-4 text-gray-600">{{ reservation.reservationDate | date: 'yyyy-MM-dd' }}</td>
             <td class="p-4 text-gray-600">{{ reservation.returnDate | date: 'yyyy-MM-dd' }}</td>
-            <td class="p-4 text-gray-600">{{ reservation.totalPrice}} DH</td>
+            <td class="p-4 text-gray-600">{{ reservation.totalPrice?.toFixed(2)}} DH</td>
             <td class="p-4">
               <span
                 class="px-2 py-1 rounded-full text-sm"

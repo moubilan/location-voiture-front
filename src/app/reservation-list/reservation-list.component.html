@@ -1,16 +1,16 @@
 <div class="p-6 bg-gray-100 min-h-screen">
-    <h2 class="text-3xl font-bold text-center mb-6">My Reservations</h2>
+    <h2 class="text-3xl font-bold text-center mb-6">Mes Reservations</h2>
     <div class="overflow-x-auto">
       <table class="table-auto w-full bg-white rounded-lg shadow-lg">
         <thead>
           <tr class="bg-blue-500 text-white text-left">
-            <th class="px-4 py-2">Reservation ID</th>
-            <th class="px-4 py-2">Reservation Number</th>
-            <th class="px-4 py-2">Car Model</th>
-            <th class="px-4 py-2">Reservation Date</th>
-            <th class="px-4 py-2">Return Date</th>
-            <th class="px-4 py-2">Total Price</th>
-            <th class="px-4 py-2">Status</th>
+            <th class="px-4 py-2">ID réservation</th>
+            <th class="px-4 py-2">Numéro de réservation</th>
+            <th class="px-4 py-2">Modèle voiture</th>
+            <th class="px-4 py-2">Date réservation</th>
+            <th class="px-4 py-2">Date retour</th>
+            <th class="px-4 py-2">Prix total</th>
+            <th class="px-4 py-2">Statut</th>
             <th class="px-4 py-2 text-center">Actions</th>
           </tr>
         </thead>
@@ -22,16 +22,20 @@
             <td class="px-4 py-2">{{ reservation.carModel }}</td>
             <td class="px-4 py-2">{{ reservation.reservationDate | date }}</td>
             <td class="px-4 py-2">{{ reservation.returnDate | date }}</td>
-            <td class="px-4 py-2">{{ reservation.totalPrice }} DH</td>
-            <td 
-              class="px-4 py-2 font-semibold" 
-              [ngClass]="{
-                'text-green-500': reservation.status === 'Active',
-                'text-red-500': reservation.status === 'Canceled'
-              }">
-              {{ reservation.status }}
+            <td class="px-4 py-2">{{ reservation.totalPrice.toFixed(2) }} DH</td>
+            <td class="p-4 text-gray-600">
+              <span
+                class="px-2 py-1 rounded-full text-sm"
+                [ngClass]="{
+                  'bg-green-100 text-green-800': reservation.status === 'CONFIRMED',
+                  'bg-yellow-100 text-yellow-800': reservation.status === 'PENDING',
+                  'bg-red-100 text-red-800': reservation.status === 'CANCELLED'
+                }"
+              >
+                {{ reservation.status }}
+              </span>
             </td>
-            @if(reservation.status !== 'Canceled') {
+            @if(reservation.status !== 'CANCELLED') {
             <td class="px-4 py-2 text-center">
               <button 
                 class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
@@ -51,18 +55,18 @@
     <div 
       class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
       <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-        <h3 class="text-lg font-bold mb-4">Confirm Cancellation</h3>
-        <p>Are you sure you want to cancel this reservation?</p>
+        <h3 class="text-lg font-bold mb-4">Confirmation d'annulation</h3>
+        <p>Êtes-vous sûr de vouloir annuler cette réservation ?</p>
         <div class="mt-6 flex justify-end space-x-4">
           <button 
             class="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300"
             (click)="closeModal()">
-            No
+            Non
           </button>
           <button 
             class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
             (click)="cancelReservation()">
-            Yes, Cancel
+            Oui, Annuler
           </button>
         </div>
       </div>
